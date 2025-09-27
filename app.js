@@ -15,6 +15,8 @@ form.addEventListener('submit', (event) => {
 
     const li = document.createElement("li");
 
+    li.textContent = item;
+
     //create remove button
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
@@ -24,13 +26,35 @@ form.addEventListener('submit', (event) => {
     removeBtn.addEventListener("click", function() {
         li.remove();
     });
+    
+    //create edit button
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.textContent = "Edit";
 
+    //edit button behavior
+    editBtn.addEventListener("click", function() {
+        if (editBtn.textContent === "Edit") {
+            const inputEdit = document.createElement("input");
+            inputEdit.type = "text";
+            inputEdit.value = li.firstChild.textContent;
+            li.replaceChild(inputEdit, li.firstChild);
+            inputEdit.focus();
+            editBtn.textContent = "Save";
+        } else {
+            const editText = li.querySelector("input").value.trim();
+            const textNode = document.createTextNode(editText);
+            li.replaceChild(textNode, li.firstChild);
+            editBtn.textContent = "Edit";
+        }
+    });
 
-    li.textContent = item;
+ 
 
     li.appendChild(removeBtn);
-
+    li.appendChild(editBtn);
     list.appendChild(li);
+
 
     input.value = "";
 
