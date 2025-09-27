@@ -9,16 +9,30 @@ form.addEventListener('submit', (event) => {
 
     // prevent page reload
     event.preventDefault();
-    
-    console.log("form submitted");
 
     const item = input.value.trim().toLowerCase();
+    if (item === "") return;
 
     const li = document.createElement("li");
 
+    //create remove button
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.type = "button";
+
+    //remove button behavior
+    removeBtn.addEventListener("click", function() {
+        li.remove();
+    });
+
+
     li.textContent = item;
+
+    li.appendChild(removeBtn);
 
     list.appendChild(li);
 
     input.value = "";
+
+    console.log("form submitted");
 });
