@@ -10,14 +10,20 @@ form.addEventListener('submit', (event) => {
     // prevent page reload
     event.preventDefault();
 
+    // trim input
     const item = input.value.trim().toLowerCase();
     if (item === "") return;
 
+    // create li element
     const li = document.createElement("li");
 
-    li.textContent = item;
+    //create span
+    const span = document.createElement("span");
+
+    span.textContent = item;
 
     //create remove button
+    // TODO: Change button alignment behavior
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.type = "button";
@@ -49,10 +55,15 @@ form.addEventListener('submit', (event) => {
         }
     });
 
- 
+    //create button column
+    const buttonColumn = document.createElement("div");
 
-    li.appendChild(removeBtn);
-    li.appendChild(editBtn);
+    buttonColumn.appendChild(removeBtn);
+    buttonColumn.appendChild(editBtn);
+ 
+    li.appendChild(span);
+    li.appendChild(buttonColumn);
+
     list.appendChild(li);
 
 
