@@ -23,7 +23,6 @@ form.addEventListener('submit', (event) => {
     span.textContent = item;
 
     //create remove button
-    // TODO: Change button alignment behavior
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.type = "button";
